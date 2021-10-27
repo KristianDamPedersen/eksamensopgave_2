@@ -1,6 +1,7 @@
 # Importering af biblioteker
 from collections import Counter
 from uuid import uuid4 # Helps generate unique ids
+import sys
 # Importing data
 nations = open('/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/nations')
 
@@ -43,6 +44,11 @@ def import_rounds (round, path_str):
 import_rounds('round1', '/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/round1')
 import_rounds('round2', '/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/round2')
 import_rounds('round3', '/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/round3')
+import_rounds('round4', '/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/round4')
+import_rounds('round5', '/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/round5')
+import_rounds('round6', '/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/round6')
+
+print(round_dict)
 
 
 # Importing the matches
@@ -71,26 +77,41 @@ def import_matches():
             match_dict['points_team_2'].append(team2_points)
         # adds empty line
         print(' ')
+print(match_dict)
 
-
-# Quick render function (for trouble shooting)
+# "Quick" render function (for trouble shooting) 
 def render_matches():
     count = -1
-    for i in match_dict:
-        count +=1
+    list_length = list(match_dict['team1'])
+    for i in range(len(list_length)):
+        count += 1
         first_team = list(match_dict['team1'])
         second_team = list(match_dict['team2'])
+        score_team_1 = match_dict['points_team_1']
+        score_team_2 = match_dict['points_team_2']
+        round_id = list(match_dict['round_id'])
         render_first = first_team[count]
         render_second = second_team[count]
-
-        print(
-            'This is the match between ' +
+        render_first_score = str(score_team_1[count])
+        render_second_score = str(score_team_2[count])
+        render_last = str(round_id[count])
+        sys.stdout.write(
+            'Match between ' +
             render_first +
             ' and ' +
-            render_second
+            render_second + 
+            ' that ended: ' +
+            render_first_score +
+            ' - ' +
+            render_second_score +
+            ' to ' + 
+            render_first + 
+            ', this belongs to round_id: ' +
+            render_last + '\n'
         )
+        sys.stdout.flush()
 
 
 import_matches()
+print(match_dict['team1'])
 render_matches()
-#my_list = [elem[0] for elem in match_dict.values()]
