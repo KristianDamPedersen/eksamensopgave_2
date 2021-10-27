@@ -55,6 +55,8 @@ def import_matches():
         for line in matches:
             print(id[id_nr]) # Prints the id corresponding to the round_id at the id_nr index.
             print(line) # Just prints the match at that point
+            line_word_list = line.split()
+            print(line_word_list)
         # adds empty line
         print(' ')
 
