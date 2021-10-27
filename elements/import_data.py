@@ -1,4 +1,5 @@
 # Importering af biblioteker
+from collections import Counter
 from uuid import uuid4 # Helps generate unique ids
 # Importing data
 nations = open('/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/nations')
@@ -43,14 +44,21 @@ import_rounds('round3', '/Users/kristiandampedersen/Documents/ip_eksamen/eksamen
 # Importing the matches
 def import_matches():
     """ This function will look at all the files in the round_dict one by one and record the matches. """
+    id_nr = -1 # Just acts as a "counter" that lets me know which round_id we've gotten to
+    # for each round
     for round in round_dict['path']:
+        id_nr += 1 # Increases the round_id
+        id = list(round_dict['round_id']) # Creates a list of the ids in the round_dict
         round_matches = open(round)
         matches = round_matches.readlines()
+        # for each line in the round file
         for line in matches:
-            print(line)
+            print(id[id_nr]) # Prints the id corresponding to the round_id at the id_nr index.
+            print(line) # Just prints the match at that point
+        # adds empty line
         print(' ')
 
 
-        
+print(round_dict)
 
 import_matches()
