@@ -14,9 +14,13 @@ round_dict = {
 }
 
 match_dict = {
-    'match_text': [],
+    'match_text': [], # Can be removed in the final version
     'match_id':[],
     'round_id':[],
+    'team1': [],
+    'team2': [],
+    'points_team_1': [],
+    'points_team_2': [],
 }
 
 
@@ -53,20 +57,40 @@ def import_matches():
         matches = round_matches.readlines()
         # for each line in the round file
         for line in matches:
-            print(id[id_nr]) # Prints the id corresponding to the round_id at the id_nr index.
-            print(line) # Just prints the match at that point
             line_word_list = line.split()
-            print(line_word_list) # Prints the words but in a list
-            match_dict['match_text'].append(line_word_list)
+            match_dict['match_text'].append(line_word_list) # Can be removed in final build
             match_dict['match_id'].append(uuid4())
             match_dict['round_id'].append(id[id_nr])
+            team1 = line_word_list[0]
+            team2 = line_word_list[2]
+            team1_points = int(line_word_list[3])
+            team2_points = int(line_word_list[5])
+            match_dict['team1'].append(team1)
+            match_dict['team2'].append(team2)
+            match_dict['points_team_1'].append(team1_points)
+            match_dict['points_team_2'].append(team2_points)
         # adds empty line
         print(' ')
 
 
-print(round_dict)
+# Quick render function (for trouble shooting)
+def render_matches():
+    count = -1
+    for i in match_dict:
+        count +=1
+        first_team = list(match_dict['team1'])
+        second_team = list(match_dict['team2'])
+        render_first = first_team[count]
+        render_second = second_team[count]
+
+        print(
+            'This is the match between ' +
+            render_first +
+            ' and ' +
+            render_second
+        )
+
 
 import_matches()
-
-my_list = [elem[0] for elem in match_dict.values()]
-print(my_list[0])
+render_matches()
+#my_list = [elem[0] for elem in match_dict.values()]
