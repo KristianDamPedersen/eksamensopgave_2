@@ -1,29 +1,33 @@
 # Importering af biblioteker
+from uuid import uuid4 # Helps generate unique ids
 # Importering af data
 nations = open('/Users/kristiandampedersen/Documents/ip_eksamen/eksamensopgave_2/data/nations')
 
 
 # Definitioner af globale variable
 team_list = []
-runder = {
-    'round' : 'path',
+round_dict = {
+    'round_id': [],
+    'round' : [],
+    'path' : []
 }
 
 
 
-# Importer nationer til en liste.
+# Imports nations to a list
 def import_nations():
-    """ Læser nations.txt linje for linje og adder linjen til team_list listen """
+    """ reads nations.txt line by line and adds it to the team_list lsit """
     Lines = nations.readlines()
     for line in Lines:
-        print('Line: {}'.format(line.strip()))
         team_list.append(line.strip())
 
 
-# Funktion der konstruerer en liste af runder
+# Constructing a list of rounds and paths
 def add_round (round, path_str):
-    runder['round'].append(round)
-    runder['path'].append(path_str)
+    """ This functions add a given round to the round_dict and generates a unique id for it. """
+    round_dict['round'].append(round)
+    round_dict['path'].append(path_str)
+    round_dict['round_id'].append(uuid4())
 
-add_round('runde1', 'sample_path')
-print(runder)
+
+        
