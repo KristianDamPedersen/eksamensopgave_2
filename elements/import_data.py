@@ -56,7 +56,10 @@ def import_matches():
             print(id[id_nr]) # Prints the id corresponding to the round_id at the id_nr index.
             print(line) # Just prints the match at that point
             line_word_list = line.split()
-            print(line_word_list)
+            print(line_word_list) # Prints the words but in a list
+            match_dict['match_text'].append(line_word_list)
+            match_dict['match_id'].append(uuid4())
+            match_dict['round_id'].append(id[id_nr])
         # adds empty line
         print(' ')
 
@@ -64,3 +67,6 @@ def import_matches():
 print(round_dict)
 
 import_matches()
+
+my_list = [elem[0] for elem in match_dict.values()]
+print(my_list[0])
