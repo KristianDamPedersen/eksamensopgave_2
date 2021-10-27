@@ -1,1 +1,1 @@
-# This is the main app rendering element
+# Kør dette program for at køre appen.
