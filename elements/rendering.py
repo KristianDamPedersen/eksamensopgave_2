@@ -3,6 +3,7 @@ import shutil
 # Text variables - main menu
 title = 'National Python Football League'
 subheading = '( Indledende programmering - Eksamensopgave 2 )'
+subheading_2 = 'Kodet af: Kristian Dam Pedersen'
 option_header = 'Choose your option:'
 option_1 = '1) See standings'
 option_2 = '2) See teams'
@@ -19,9 +20,10 @@ t_size_cut = str(t_size[1:3])
 width = int(t_size_cut)
 
 class render:
-    def render_main(title, subheading, option_header, option_1, option_2, option_3):
+    def render_main(title, subheading, subheading_2, option_header, option_1, option_2, option_3):
         """ Function that renders main menu """
         from colorama import Fore, Back, Style
+        import math
         # Reset styles
         print(Back.RESET)
         print(Fore.RESET)
@@ -30,11 +32,12 @@ class render:
         print((layout.center(title)*' ') + title + (layout.center(title)*' '))
         print(Fore.RESET)
         print(layout.center(subheading)*'-' + subheading + layout.center(subheading)*'-')
+        print(layout.center(subheading_2)*' ' + '*' + subheading_2 + '*' + layout.center(subheading_2)*' ')
         ### Menu-body
         print(Back.WHITE)
         print(Fore.BLACK)
         print(layout.center(option_header)*' ' + option_header + layout.center(option_header)*' ')
-        print(20*'- -')
+        print(math.floor(width/3)*'- -')
         print(layout.center(option_1)*' ' + option_1 + layout.center(option_1)*' ')
         print(layout.center(option_2)*' ' + option_2 + layout.center(option_2)*' ')
         print(layout.center(option_3)*' ' + option_3 + layout.center(option_3)*' ')
