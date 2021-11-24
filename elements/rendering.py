@@ -1,4 +1,5 @@
 """ DOCUMENT CONTAINING RENDER UI FUNCTIONS"""
+import shutil
 # Text variables - main menu
 title = 'National Python Football League'
 subheading = '( Indledende programmering - Eksamensopgave 2 )'
@@ -12,7 +13,10 @@ ml_title = 'All matches:'
 
 
 # Layout variables
-width = 60
+terminal_size = shutil.get_terminal_size()
+t_size = str(terminal_size[:3])
+t_size_cut = str(t_size[1:3])
+width = int(t_size_cut)
 
 class render:
     def render_main(title, subheading, option_header, option_1, option_2, option_3):
