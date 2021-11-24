@@ -38,7 +38,11 @@ class render:
         # Importing data for rendering
         from eksamensopgave_2.elements.import_data import imports as imp
         from eksamensopgave_2.elements.import_data import rounds, paths
-        
+        rD = imp.import_rounds(rounds, paths)
+        mD = imp.import_matches()
+        rM = imp.render_matches(mD)
+        for i in mD:
+            print(i)
 
 
 
