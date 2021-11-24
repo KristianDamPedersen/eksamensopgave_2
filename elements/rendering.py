@@ -33,16 +33,13 @@ class render:
         print(Back.RESET)
         print(Fore.RESET)
     
-    def render_standings():
+    def render_match_log():
         """ Function that renders stadings if user selects 1. """
         # Importing data for rendering
+        import pandas as pd
         from eksamensopgave_2.elements.import_data import imports as imp
-        from eksamensopgave_2.elements.import_data import rounds, paths
-        rD = imp.import_rounds(rounds, paths)
-        mD = imp.import_matches()
-        rM = imp.render_matches(mD)
-        for i in mD:
-            print(i)
+        df = imp.construct_match_df()
+        print(df)
 
 
 

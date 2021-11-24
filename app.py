@@ -17,11 +17,8 @@ paths = paths.copy()
 
 
 # Importing data
-rD = imp.import_rounds(rounds, paths)
-mD = imp.import_matches()
-rM = imp.render_matches(mD)
 
 # App rendering
 ## render main menu
 ren.render_main(title, subheading, option_header, option_1, option_2)
-ren.render_standings()
+ren.render_match_log()

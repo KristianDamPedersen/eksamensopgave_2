@@ -135,3 +135,12 @@ class imports:
                 ', this belongs to round_id: ' +
                 render_last])
         return output
+    
+    def construct_match_df():
+        """ Function that creates a DataFrame containing all the matches """
+        import pandas as pd
+        rD = imports.import_rounds(rounds, paths)
+        mD = imports.import_matches()
+        df = pd.DataFrame(mD)
+        df = df[['team1', 'team2', 'points_team_2', 'points_team_2', 'match_id', 'round_id']]
+        return df
