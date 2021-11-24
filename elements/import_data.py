@@ -63,7 +63,7 @@ class imports:
         for i in rounds:
             round_dict['round'].append(rounds[count])
             round_dict['path'].append(path_strs[count])
-            round_dict['round_id'].append(uuid4())
+            round_dict['round_id'].append(count+1)
             count += 1
         return round_dict
 
@@ -142,5 +142,5 @@ class imports:
         rD = imports.import_rounds(rounds, paths)
         mD = imports.import_matches()
         df = pd.DataFrame(mD)
-        df = df[['team1', 'team2', 'points_team_2', 'points_team_2', 'match_id', 'round_id']]
+        df = df[['team1', 'team2', 'points_team_1', 'points_team_2', 'match_id', 'round_id']]
         return df

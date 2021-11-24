@@ -39,6 +39,7 @@ class render:
         import pandas as pd
         from eksamensopgave_2.elements.import_data import imports as imp
         df = imp.construct_match_df()
+        df = df[['team1', 'team2', 'points_team_1', 'points_team_2']]
         print(df)
 
 
