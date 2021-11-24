@@ -6,7 +6,12 @@ import pandas as pd
 from uuid import uuid4 # Helps generate unique ids
 from eksamensopgave_2.elements.import_data import imports as imp
 from eksamensopgave_2.elements.import_data import rounds, paths
+from eksamensopgave_2.elements.rendering import render as ren
+from eksamensopgave_2.elements.rendering import title, subheading, option_header, option_1, option_2
+from eksamensopgave_2.elements.rendering import layout as lay
+from eksamensopgave_2.elements.rendering import width
 import math
+from colorama import Fore, Back, Style
 rounds = rounds.copy()
 paths = paths.copy()
 
@@ -16,17 +21,7 @@ rD = imp.import_rounds(rounds, paths)
 mD = imp.import_matches()
 rM = imp.render_matches(mD)
 
-# Render menu
-# Text-variables
-title = 'National Python Football League'
-subheading = '( Indledende programmering - Eksamensopgave 2 )'
-# Spacing
-width = 60
-title_spacing = int(width/2-len(title)/2)
-subheading_spacing = int(width/2-len(subheading)/2)
-
-## Print statements
-print((title_spacing*' ') + title + (title_spacing*' '))
-print(subheading_spacing*'-' + subheading + subheading_spacing*'-')
-print(60*'_')
-
+# App rendering
+## render main menu
+ren.render_main(title, subheading, option_header, option_1, option_2)
+ren.render_standings()
