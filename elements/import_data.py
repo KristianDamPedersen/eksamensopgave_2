@@ -107,7 +107,7 @@ class imports:
         return match_dict
 
     # "Quick" render function (for trouble shooting) 
-    def render_matches():
+    def render_matches(match_dict):
         count = -1
         list_length = list(match_dict['team1'])
         output = []
@@ -135,5 +135,3 @@ class imports:
                 ', this belongs to round_id: ' +
                 render_last])
         return output
-rd = imports.import_rounds(rounds, paths)
-print(rd)
