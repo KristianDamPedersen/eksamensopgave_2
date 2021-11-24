@@ -3,7 +3,7 @@ import shutil
 # Text variables - main menu
 title = 'National Python Football League'
 subheading = '( Indledende programmering - Eksamensopgave 2 )'
-subheading_2 = 'Kodet af: Kristian Dam Pedersen'
+subheading_2 = 'Coded by: Kristian Dam Pedersen'
 option_header = 'Choose your option:'
 option_1 = '1) See standings'
 option_2 = '2) See teams'
