@@ -144,3 +144,6 @@ class imports:
         df = pd.DataFrame(mD)
         df = df[['team1', 'team2', 'points_team_1', 'points_team_2', 'match_id', 'round_id']]
         return df
+    
+    def score_logic_df():
+        pass
