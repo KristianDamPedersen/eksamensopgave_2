@@ -5,12 +5,13 @@ subheading = '( Indledende programmering - Eksamensopgave 2 )'
 option_header = 'Choose your option:'
 option_1 = '1) See standings'
 option_2 = '2) See teams'
+option_3 = '3) See all matches'
 
 # Layout variables
 width = 60
 
 class render:
-    def render_main(title, subheading, option_header, option_1, option_2):
+    def render_main(title, subheading, option_header, option_1, option_2, option_3):
         """ Function that renders main menu """
         from colorama import Fore, Back, Style
         # Reset styles
@@ -28,6 +29,7 @@ class render:
         print(20*'- -')
         print(layout.center(option_1)*' ' + option_1 + layout.center(option_1)*' ')
         print(layout.center(option_2)*' ' + option_2 + layout.center(option_2)*' ')
+        print(layout.center(option_3)*' ' + option_3 + layout.center(option_3)*' ')
         print(width*' ')
         # Reset styles
         print(Back.RESET)
