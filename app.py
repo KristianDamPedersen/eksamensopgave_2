@@ -26,5 +26,6 @@ sortby = 'P'
 # App rendering
 ## render main menu
 ren.render_main(title, subheading, subheading_2, option_header, option_1, option_2, option_3)
+        
 ## Print width of terminal (delete in production)
 #print('Width is currently: ' + str(width))

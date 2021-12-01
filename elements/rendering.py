@@ -52,7 +52,6 @@ class render:
         # Input
         prompt = input('Please choose an option: ')
         render.render_switcher(prompt)
-        
     
     def render_match_log():
         """ Function that renders stadings if user selects 3. """
@@ -85,11 +84,20 @@ class render:
             print(df.iloc[[i]])
             print(' ')
         
+        # Guiding the user
+        print('Input 0 for main menu, 2 for teams or 3 for matchlog!')
+        
         ## Re-resetting styling
         print(Fore.RESET)
         print(Back.RESET)
 
+        ## input
+        prompt = input('Please choose an option: ')
+        render.render_switcher(prompt)
+    
+
     def render_rankings(points_win, points_draw, points_loss, sortby):
+        """ Functions that render the rankings if the user presses 1"""
         # Importing data for rendering
         import pandas as pd
         from colorama import Fore, Back, Style
@@ -116,20 +124,40 @@ class render:
         for i in range(len(df)):
             print(df.iloc[[i]])
             print(' ')
-        
+        ## Input printing
+        print('Want to sort? write "sort by scores" to sort by "goals" \n or "sort by points" to sort by total points!')
+        print('Else input 0 for main menu, 2 for teams or 3 for matchlog!')
         ## Re-resetting styling
         print(Fore.RESET)
         print(Back.RESET)
 
+        ## Input
+        prompt = input('Please choose an option: ')
+        render.render_switcher(prompt)
+        
+    
+
     def render_switcher(prompt):
         """ Small functions that switches between menus"""
         from eksamensopgave_2.app import points_win, points_draw, points_loss, sortby
-        if prompt == '1':
+        if prompt == '0':
+            render.render_main(title, subheading, subheading_2, option_header, option_1, option_2, option_3)
+        elif prompt == '1':
             render.render_rankings(points_win, points_draw, points_loss, sortby)
+        elif prompt == '2':
+            print('Not implemented yet')
+            prompt = input('Please choose an option: ')
+            render.render_switcher(prompt)
         elif prompt == '3':
             render.render_match_log()
+        elif prompt == 'sort by scores':
+            render.render_rankings(points_win, points_draw, points_loss, 'S')
+        elif prompt == 'sort by points':
+            render.render_rankings(points_win, points_draw, points_loss, 'P')
         else:
             print('Wrong input!')
+            prompt = input('Please choose an option: ')
+            render.render_switcher(prompt)
 
 
 
