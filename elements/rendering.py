@@ -81,6 +81,41 @@ class render:
         print(Fore.RESET)
         print(Back.RESET)
 
+    def render_rankings():
+                # Importing data for rendering
+        import pandas as pd
+        from colorama import Fore, Back, Style
+        from eksamensopgave_2.elements.logic import logic
+        df = logic.team_points()
+        df = df[['team1', 'team2', 'points_team_1', 'points_team_2', 'round_id']]
+        df = df.rename(columns={
+            'team1': 'Team 1',
+            'team2': 'Team 2',
+            'points_team_1': 'team 1 points',
+            'points_team_2': 'team 2 points',
+            'round_id': 'Round'
+        })
+        ## RESET styling
+        print(Fore.RESET)
+        print(Back.RESET)
+
+        # actual rendering:
+        print(Fore.YELLOW)
+        print(layout.center(ml_title)*' ' + ml_title + layout.center(ml_title)*' ')
+        print(Fore.RESET)
+        print(width*'_')
+        
+        print(Fore.BLACK)
+        print(Back.WHITE)
+        for i in range(len(df)):
+            print(df.iloc[[i]])
+            print(' ')
+        
+        ## Re-resetting styling
+        print(Fore.RESET)
+        print(Back.RESET)
+
+
 
 
 class layout:

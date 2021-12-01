@@ -1,8 +1,4 @@
 """ This document contains the nescessary logic for the scoring system """
-
-from numpy import NaN
-import pandas as pd
-
 class logic:
     points_win = 3
     points_draw = 1
@@ -10,6 +6,8 @@ class logic:
 
     def identify_winners():
         """ Function that returns the winners of each unique match """
+        import pandas as pd
+        from numpy import NaN
         # Imports the data
         from eksamensopgave_2.elements.import_data import imports as imp
         df = imp.construct_match_df()
@@ -108,9 +106,16 @@ class logic:
         # Return
         return score_df
 
-    def construct_rankings(win_points, draw_points, loss_points):
+    def construct_rankings(win_points, draw_points, loss_points, sortby):
         """ This function constructs the dataframe used for rankings with the ability to sort. """
         df = logic.team_points(win_points, draw_points, loss_points)
         df = df[['team', 'no. matches', 'no. wins', 'no. losses', 'no. draws', 'total_points', 'total_scores']]
-        return df
-logic.construct_rankings(logic.points_win, logic.points_draw, logic.points_loss)
+        if sortby == 'P':
+            return df.sort_values(by='total_points', ascending=False)
+        elif sortby == 'S':
+            return df.sort_values(by=['total_scores', 'total_points'], ascending=False)
+        elif sortby == 'A':
+            return df.sort_values(by='team')
+        else:
+            return df
+logic.construct_rankings(logic.points_win, logic.points_draw, logic.points_loss, 'A')
