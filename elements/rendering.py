@@ -51,16 +51,8 @@ class render:
 
         # Input
         prompt = input('Please choose an option: ')
-        prompt_number = int(prompt)
+        render.render_switcher(prompt)
         
-        ## Where do we go from here?
-        from eksamensopgave_2.app import points_win, points_draw, points_loss, sortby
-        if prompt_number == 1:
-            render.render_rankings(points_win, points_draw, points_loss, sortby)
-        elif prompt_number == 3:
-            render.render_match_log()
-        else:
-            print('Wrong input!')
     
     def render_match_log():
         """ Function that renders stadings if user selects 3. """
@@ -128,6 +120,16 @@ class render:
         ## Re-resetting styling
         print(Fore.RESET)
         print(Back.RESET)
+
+    def render_switcher(prompt):
+        """ Small functions that switches between menus"""
+        from eksamensopgave_2.app import points_win, points_draw, points_loss, sortby
+        if prompt == '1':
+            render.render_rankings(points_win, points_draw, points_loss, sortby)
+        elif prompt == '3':
+            render.render_match_log()
+        else:
+            print('Wrong input!')
 
 
 
