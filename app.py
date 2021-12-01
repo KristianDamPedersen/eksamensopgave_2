@@ -27,11 +27,5 @@ sortby = 'P'
 ## render main menu
 ren.render_main(title, subheading, subheading_2, option_header, option_1, option_2, option_3)
 
-## Render all of the matches
-ren.render_match_log()
-
-## Render the rankings
-ren.render_rankings(points_win, points_draw, points_loss, sortby)
-
 ## Print width of terminal (delete in production)
-print('Width is currently: ' + str(width))
+#print('Width is currently: ' + str(width))
