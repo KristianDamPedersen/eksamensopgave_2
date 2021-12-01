@@ -16,6 +16,7 @@ def identify_winners():
     # Appends the winner to the dataframe
     df['winner'] = NaN
     df['loser'] = NaN
+    df['draw'] = 0
     count = 0
     for i in range(len(df)):
         df_row = df.iloc[count]
@@ -26,13 +27,12 @@ def identify_winners():
             print('team 2 wins!')
             df.loc[df.index[count], 'winner'] = df.loc[df.index[count], 'team2']
         else:
-            print('Its a draw!')
+            df.loc[df.index[count], 'draw'] = 1
         count += 1
 
     # Appends the loser to the dataframe
 
     # Returns the dataframe
-    return df['winner']
-    
+    return df
 
 identify_winners()
