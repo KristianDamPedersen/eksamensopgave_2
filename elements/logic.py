@@ -49,7 +49,7 @@ def team_points():
             unique_names.append(i)
     
     # Create a df containing team names and points from wins
-    point_dict = {'team': unique_names, 'points_wins': [], 'points_draws': []}
+    point_dict = {'team': unique_names, 'points_wins': [], 'points_draws': [], 'points_losses': []}
     
     for i in point_dict['team']:
         ## Retrieving the correct dataframe
@@ -58,9 +58,19 @@ def team_points():
         data_t2 = data[data['team2'].isin([i])]
         data = data_t1.append(data_t2)
         print(data)
-        ## Calculate points for wins
+
+        ## Calculate points from wins
+        win_df = data[data['winner'] == i]
+        print(win_df)
+        point_dict['points_wins'].append(len(win_df)*points_win)
+
+        ## Calculate points from draws
+        draw_df = data[data['draw'] == 1]
+        point_dict['points_draws'].append(len(draw_df)*points_draw)
         
-        ## Calculate points for losses
+        ## Calculate points from losses
+        loss_df = data[data['loser'] == i]
+        point_dict['points_losses'].append(len(point_dict)*points_loss)
             
     
     # Create another column containing wins from losses
