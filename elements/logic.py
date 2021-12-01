@@ -1,6 +1,7 @@
 """ This document contains the nescessary logic for the scoring system """
 
 from numpy import NaN
+import pandas as pd
 
 
 points_win = 3
@@ -34,7 +35,7 @@ def identify_winners():
     return df
 
 def team_points():
-    """ This function calculates the number of points """
+    """ This function calculates the number of points and goals and outputs a dataframe """
     # import the data
     df = identify_winners()
 
@@ -49,19 +50,24 @@ def team_points():
             unique_names.append(i)
     
     # Create a df containing team names and points from wins
-    point_dict = {'team': unique_names, 'points_wins': [], 'points_draws': [], 'points_losses': []}
+    point_dict = {
+        'team': unique_names, 
+        'points_wins': [], 
+        'points_draws': [], 
+        'points_losses': [], 
+        'total_scores': []
+        }
     
     for i in point_dict['team']:
+
         ## Retrieving the correct dataframe
         data = df.copy()
         data_t1 = data[data['team1'].isin([i])]
         data_t2 = data[data['team2'].isin([i])]
         data = data_t1.append(data_t2)
-        print(data)
 
         ## Calculate points from wins
         win_df = data[data['winner'] == i]
-        print(win_df)
         point_dict['points_wins'].append(len(win_df)*points_win)
 
         ## Calculate points from draws
@@ -70,20 +76,24 @@ def team_points():
         
         ## Calculate points from losses
         loss_df = data[data['loser'] == i]
-        point_dict['points_losses'].append(len(point_dict)*points_loss)
-            
-    
-    # Create another column containing wins from losses
-    # Calculte the total number of points
-    # Return
-    return point_dict
+        point_dict['points_losses'].append(len(loss_df)*points_loss)
 
-def team_goals():
-    """ This function finds the number of goals for each team. """
-    pass
+        ## Calculate nr. of scores
+        scores_t1 = data[data['team1'] == i]
+        scores_t1 = scores_t1['points_team_1'].sum()
+        scores_t2 = data[data['team2'] == i]
+        scores_t2 = scores_t2['points_team_1'].sum()
+        scores = scores_t1 + scores_t2
+        point_dict['total_scores'].append(scores)
+
+    score_df = pd.DataFrame(point_dict)
+    score_df['total_points'] = score_df['points_wins'] + score_df['points_draws'] + score_df['points_losses']
+            
+    # Return
+    return score_df
 
 def construct_rankings():
-    """ This function constructs the dataframe used for rankings """
+    """ This function constructs the dataframe used for rankings with the ability to sort. """
     pass
 
 team_points()
