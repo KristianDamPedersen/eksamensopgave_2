@@ -12,6 +12,9 @@ option_3 = '3) See all matches'
 # Text variables match log
 ml_title = 'All matches:'
 
+# Text variables ranking
+r_title = 'Rankings'
+
 
 # Layout variables
 terminal_size = shutil.get_terminal_size()
@@ -82,18 +85,20 @@ class render:
         print(Back.RESET)
 
     def render_rankings():
-                # Importing data for rendering
+        # Importing data for rendering
         import pandas as pd
         from colorama import Fore, Back, Style
         from eksamensopgave_2.elements.logic import logic
-        df = logic.team_points()
-        df = df[['team1', 'team2', 'points_team_1', 'points_team_2', 'round_id']]
+        # Defining variables
+        points_win = logic.points_win
+        points_draw = logic.points_draw
+        points_loss = logic.points_loss
+        sortby = 'P'
+        # Defining data
+        df = logic.construct_rankings(points_win, points_draw, points_loss, sortby)
         df = df.rename(columns={
-            'team1': 'Team 1',
-            'team2': 'Team 2',
-            'points_team_1': 'team 1 points',
-            'points_team_2': 'team 2 points',
-            'round_id': 'Round'
+            'total_points': 'Total points',
+            'total_scores': 'Total goals'
         })
         ## RESET styling
         print(Fore.RESET)
@@ -101,7 +106,7 @@ class render:
 
         # actual rendering:
         print(Fore.YELLOW)
-        print(layout.center(ml_title)*' ' + ml_title + layout.center(ml_title)*' ')
+        print(layout.center(r_title)*' ' + r_title + layout.center(r_title)*' ')
         print(Fore.RESET)
         print(width*'_')
         

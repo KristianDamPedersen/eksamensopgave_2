@@ -34,6 +34,7 @@ class logic:
 
     def team_points(win_points, draw_points, loss_points):
         """ This function calculates the number of points and goals and outputs a dataframe """
+        import pandas as pd
         # import the data
         df = logic.identify_winners()
 
@@ -108,6 +109,7 @@ class logic:
 
     def construct_rankings(win_points, draw_points, loss_points, sortby):
         """ This function constructs the dataframe used for rankings with the ability to sort. """
+        import pandas as pd
         df = logic.team_points(win_points, draw_points, loss_points)
         df = df[['team', 'no. matches', 'no. wins', 'no. losses', 'no. draws', 'total_points', 'total_scores']]
         if sortby == 'P':
@@ -118,4 +120,3 @@ class logic:
             return df.sort_values(by='team')
         else:
             return df
-logic.construct_rankings(logic.points_win, logic.points_draw, logic.points_loss, 'A')

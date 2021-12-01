@@ -22,4 +22,5 @@ paths = paths.copy()
 ## render main menu
 ren.render_main(title, subheading, subheading_2, option_header, option_1, option_2, option_3)
 ren.render_match_log()
+ren.render_rankings()
 print('Width is currently: ' + str(width))
