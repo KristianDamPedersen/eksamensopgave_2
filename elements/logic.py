@@ -49,11 +49,24 @@ def team_points():
             unique_names.append(i)
     
     # Create a df containing team names and points from wins
+    point_dict = {'team': unique_names, 'points_wins': [], 'points_draws': []}
+    
+    for i in point_dict['team']:
+        ## Retrieving the correct dataframe
+        data = df.copy()
+        data_t1 = data[data['team1'].isin([i])]
+        data_t2 = data[data['team2'].isin([i])]
+        data = data_t1.append(data_t2)
+        print(data)
+        ## Calculate points for wins
+        
+        ## Calculate points for losses
+            
     
     # Create another column containing wins from losses
     # Calculte the total number of points
     # Return
-    return unique_names
+    return point_dict
 
 def team_goals():
     """ This function finds the number of goals for each team. """
