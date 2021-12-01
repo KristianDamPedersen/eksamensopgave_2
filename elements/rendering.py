@@ -84,16 +84,11 @@ class render:
         print(Fore.RESET)
         print(Back.RESET)
 
-    def render_rankings():
+    def render_rankings(points_win, points_draw, points_loss, sortby):
         # Importing data for rendering
         import pandas as pd
         from colorama import Fore, Back, Style
         from eksamensopgave_2.elements.logic import logic
-        # Defining variables
-        points_win = logic.points_win
-        points_draw = logic.points_draw
-        points_loss = logic.points_loss
-        sortby = 'P'
         # Defining data
         df = logic.construct_rankings(points_win, points_draw, points_loss, sortby)
         df = df.rename(columns={

@@ -1,9 +1,10 @@
 """ This document contains the nescessary logic for the scoring system """
-class logic:
-    points_win = 3
-    points_draw = 1
-    points_loss = 0
+# Default logic variables
+points_win = 3
+points_draw = 1
+points_loss = 0
 
+class logic:
     def identify_winners():
         """ Function that returns the winners of each unique match """
         import pandas as pd

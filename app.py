@@ -10,17 +10,28 @@ from eksamensopgave_2.elements.rendering import render as ren
 from eksamensopgave_2.elements.rendering import title, subheading, subheading_2, option_header, option_1, option_2, option_3, terminal_size
 from eksamensopgave_2.elements.rendering import layout as lay
 from eksamensopgave_2.elements.rendering import width
+from eksamensopgave_2.elements.logic import logic
+from eksamensopgave_2.elements.logic import points_win, points_draw, points_loss
 import math
 from colorama import Fore, Back, Style
 rounds = rounds.copy()
 paths = paths.copy()
 
-
-# Importing data
+# Default logic variables
+points_win = points_win.copy()
+points_draw = points_draw.copy()
+points_loss = points_loss.copy()
+sortby = 'P'
 
 # App rendering
 ## render main menu
 ren.render_main(title, subheading, subheading_2, option_header, option_1, option_2, option_3)
+
+## Render all of the matches
 ren.render_match_log()
-ren.render_rankings()
+
+## Render the rankings
+ren.render_rankings(points_win, points_draw, points_loss, sortby)
+
+## Print width of terminal (delete in production)
 print('Width is currently: ' + str(width))
