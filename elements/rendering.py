@@ -97,6 +97,7 @@ class render:
         # Defining data
         df = logic.construct_rankings(points_win, points_draw, points_loss, sortby)
         df = df.rename(columns={
+            'team': '___Team___',
             'total_points': 'Total points',
             'total_scores': 'Total goals'
         })
