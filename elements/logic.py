@@ -52,6 +52,10 @@ def team_points():
     # Create a df containing team names and points from wins
     point_dict = {
         'team': unique_names, 
+        'no. matches': [],
+        'no. wins': [],
+        'no. draws': [],
+        'no. losses': [],
         'points_wins': [], 
         'points_draws': [], 
         'points_losses': [], 
@@ -85,6 +89,18 @@ def team_points():
         scores_t2 = scores_t2['points_team_1'].sum()
         scores = scores_t1 + scores_t2
         point_dict['total_scores'].append(scores)
+
+        ## Calculate no. matches
+        point_dict['no. matches'].append(len(data))
+
+        ## Calculate no. wins
+        point_dict['no. wins'].append(len(win_df))
+
+        ## Calculate no. draws
+        point_dict['no. draws'].append(len(draw_df))
+
+        ## Calculate no. losses
+        point_dict['no. losses'].append(len(loss_df))
 
     score_df = pd.DataFrame(point_dict)
     score_df['total_points'] = score_df['points_wins'] + score_df['points_draws'] + score_df['points_losses']
