@@ -18,9 +18,9 @@ rounds = rounds.copy()
 paths = paths.copy()
 
 # Default logic variables
-points_win = points_win.copy()
-points_draw = points_draw.copy()
-points_loss = points_loss.copy()
+points_win = points_win
+points_draw = points_draw
+points_loss = points_loss
 sortby = 'P'
 
 # App rendering
